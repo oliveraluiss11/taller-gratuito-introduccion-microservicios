@@ -19,6 +19,14 @@ public class OperationController {
 
     @PostMapping
     public ResponseEntity<OperationResponse> makeOperation(@RequestBody OperationRequest operationRequest) {
-        return new ResponseEntity<>(operationService.makeOperation(operationRequest), HttpStatus.CREATED);
+        try{
+            return new ResponseEntity<>(operationService.makeOperation(operationRequest), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(OperationResponse
+                    .builder()
+                    .message("El número no puede ser divido por 0")
+                    .build(), HttpStatus.UNPROCESSABLE_ENTITY);
+        }
+
     }
 }

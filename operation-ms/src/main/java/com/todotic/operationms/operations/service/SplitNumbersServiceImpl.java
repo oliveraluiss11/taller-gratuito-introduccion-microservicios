@@ -15,7 +15,7 @@ public class SplitNumbersServiceImpl implements OperationNumbersService{
     public Double makeOperation(OperationRequest operationRequest) {
         Double a = operationRequest.getFirstNumber();
         Double b = operationRequest.getSecondNumber();
-        if(b == 0) return null;
+        if(Double.compare(b, 0.0) == 0) return null;
         return a/b;
     }
 }
